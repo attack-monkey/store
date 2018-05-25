@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAEA,SAAS,aAAT,CAAuB,WAAvB,EAAoC,SAApC,GAAgD,aAAhD","file":"store.map","sourcesContent":["//import { Store } from './src';\n\ndocument.querySelector('#response').innerHTML = 'hello world';"]}

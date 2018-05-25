@@ -1,0 +1,29 @@
+{
+  "name": "store",
+  "version": "1.0.0",
+  "description": "Store is a local JSON store for javascript.",
+  "main": "index.ts",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/attack-monkey/store.git"
+  },
+  "keywords": [
+    "json",
+    "store",
+    "query",
+    "immutable"
+  ],
+  "author": "Ben Clark bclark.2111@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/attack-monkey/store/issues"
+  },
+  "homepage": "https://github.com/attack-monkey/store#readme",
+  "devDependencies": {
+    "typescript": "^2.8.3"
+  }
+}
