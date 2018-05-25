@@ -4,7 +4,7 @@
   "description": "Store is a local JSON store for javascript.",
   "main": "index.ts",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel _index.html",
     "test": "test"
   },
   "repository": {
