@@ -39,7 +39,7 @@ console.log(obj1.get('thing')); // Still apple baby!
 
 ## JS in the Browser
 
-Copy lib/store.js into your project
+Use /lib/store.js into your project
 
 ```html
 
@@ -48,6 +48,8 @@ Copy lib/store.js into your project
 ```
 
 ## ES6 / Typescript
+
+Use either store.ts or store.js from /src
 
 ```javascript
 
