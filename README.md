@@ -254,3 +254,4 @@ eg.
 `store.apply('lvl1', pushArray => pushArray.push(something)) // BAD!!`  
 
 Instead use `store.push('lvl1', something)` or `store.unshift('lvl1', something)`
+
