@@ -1,7 +1,7 @@
 Store.js
 ========
 
-Store is a normal javascript object - _with super powers_
+Store is a like a normal javascript object - _but with super powers_
 
 _Normal objects..._
 
