@@ -35,9 +35,9 @@ console.log(obj1.get('thing')); // Still apple baby!
 - A Store can be locked and unlocked to aid in data not being accidentally changed
 - Advanced querying with filters, limits, and multi-level sorting
 
-## Get started
+## Install
 
-## JS in the Browser
+### JS in the Browser
 
 Use /lib/store.js into your project
 
@@ -47,7 +47,7 @@ Use /lib/store.js into your project
 
 ```
 
-## ES6 / Typescript
+### ES6 / Typescript
 
 Use either store.ts or store.js from /src
 
@@ -57,7 +57,7 @@ install { Store } from './src'
 
 ```
 
-## Run this example project
+### Run this example project
 
 clone the repo
 
