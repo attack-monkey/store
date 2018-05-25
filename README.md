@@ -80,6 +80,7 @@ store.push('lvl1', 'f');
 pushArrays are stored as an array of rows. A row is just an object with an id and value. `id` is a unique sequential ID and `value` is the value of the array item.
 
 ```javascript
+
 {
 	lvl1: [
 		{id: 1, value: 'a'},
@@ -96,6 +97,7 @@ pushArrays are stored as an array of rows. A row is just an object with an id an
 A pushArray can be retrieved in full with `store.get('lvl1')` which returns
 
 ```javascript
+
 [
 	{id: 1, value: 'a'},
 	{id: 2, value: 'b'},
@@ -104,6 +106,7 @@ A pushArray can be retrieved in full with `store.get('lvl1')` which returns
 	{id: 5, value: 'e'},
 	{id: 6, value: 'f'}
 ]
+
 ```
 
 A pushArray row can be retrieved directly by `$<id>` - eg.  
