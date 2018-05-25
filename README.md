@@ -1,7 +1,7 @@
 Store.js
 ========
 
-Store is a like a normal javascript object - _but with super powers_
+Store is a local JSON store for javascript. It differs from a normal object in that it is dereferenced from any other object. Only specific methods can get, create, update, delete data. When `get` returns data, it is only a copy - keeping the original unchanged. Store also provides querying (sort, limit, filter), locking, and more...
 
 _Normal objects..._
 
