@@ -35,9 +35,48 @@ console.log(obj1.get('thing')); // Still apple baby!
 - A Store can be locked and unlocked to aid in data not being accidentally changed
 - Advanced querying with filters, limits, and multi-level sorting
 
+## Get started
+
+## JS in the Browser
+
+Copy lib/store.js into your project
+
+```html
+
+<script src="store.js">
+
+```
+
+## ES6 / Typescript
+
 ```javascript
 
- let store = storeCreator({});
+install { Store } from './src'
+
+```
+
+## Run this example project
+
+clone the repo
+
+$ `https://github.com/attack-monkey/store`
+
+install parcel.js globally. Required to run the project.
+
+$ `npm install -g parcel-bundler`
+
+Run the project which will automatically install typescript into the project
+
+$ `npm start`
+
+This will run the project locally on localhost:1234 by default
+
+
+## Basics
+
+```javascript
+
+ let store = new Store({});
  
  store.set('lvl1/lvl2', 'hello')	// Adds or updates the node and adds any parents if missing
  store.set('lvl1/lvl2', undefined) 	// Deletes the node and cleans up any child-less parent nodes (undefined / null / [] / {}) all result in delete

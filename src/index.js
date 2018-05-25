@@ -1,10 +1,9 @@
 export class Store {
-	store: any;
-	locked: boolean;
-	idCount: number = 1;
-
+  
 	constructor(obj) {
 		this.store = cloner(obj);
+		this.locked = false;
+		this.idCount = 1;
 	}
 
 	get(key, options) { return get(key, options, this.store); }
@@ -218,7 +217,7 @@ function reducer(_state, subArray, val, l) {
 
 // array sort functions -------------------------------------------------------
 
-function numberSort(arr, sortArr, direction?) {
+function numberSort(arr, sortArr, direction) {
 	let sortLevel = 0;
 	const result = arr.reduce((ac, cv, i, arr) => {
 		if (!ac.old) { ac.old = arr }
