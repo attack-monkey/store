@@ -1,7 +1,7 @@
 Store.js
 ========
 
-Store is a local JSON object store.
+Store is a normal javascript object - _with super powers_
 
 _Normal objects..._
 
@@ -35,7 +35,7 @@ console.log(obj1.get('thing')); // Still apple baby!
 - A Store can be locked and unlocked to aid in data not being accidentally changed
 - Advanced querying with filters, limits, and multi-level sorting
 
-```
+```javascript
 
  let store = storeCreator({});
  
@@ -53,27 +53,33 @@ While you can get and set arrays, Store provides a more powerful solution in the
 
 To create a pushArray just use .push() in place of set.
 
-```
+```javascript
+
 store.push('lvl1', ['a', 'b', 'c']);
+
 ```
 
 If you use push when there is already a pushArray present, then the new items are appended to the existing pushArray.
 
-```
+```javascript
+
 store.push('lvl1', ['d', 'e']);
+
 ```
 
 You can also push single values...
 
-```
+```javascript
+
 store.push('lvl1', 'f');
+
 ```
 
 **To push items to the front of the pushArray use `.unshift()` instead of `.push()`**
 
 pushArrays are stored as an array of rows. A row is just an object with an id and value. `id` is a unique sequential ID and `value` is the value of the array item.
 
-```
+```javascript
 {
 	lvl1: [
 		{id: 1, value: 'a'},
@@ -89,7 +95,7 @@ pushArrays are stored as an array of rows. A row is just an object with an id an
 
 A pushArray can be retrieved in full with `store.get('lvl1')` which returns
 
-```
+```javascript
 [
 	{id: 1, value: 'a'},
 	{id: 2, value: 'b'},
@@ -173,14 +179,18 @@ or with `store.set('lvl1/$1', { id: 1, value: 'z'}); // Update value of 'a' to '
 
 The safest way to update pushArrays is with `.update()` ... 
 
-```
+```javascript
+
 store.update('lvl1', {id: 1, value: 'z'}); // Update value of 'a' to 'z'
+
 ```
 
 `.update()` is also more powerful than using `.set()` because it allows multiple row updates at once...
 
-```
+```javascript
+
 store.update('lvl1', [{id: 1, value: 'z'}, {id: 3, value: 'y'}]);
+
 ```
 
 ### Apply
@@ -191,9 +201,12 @@ pushArrays can also have any array.prototype function applied to them with `.app
 
 `newResult = store.apply('lvl1', pushArray => pushArray.find(row => row.id === 1)) // returns the pushArray row where id is 1`
 
-> Note: that some array.prototype functions (such as pop and shift) mutate the pushArray - that is they make actual changes.  
+> Note: that some array.prototype functions (such as pop and shift) mutate the pushArray - that is they make actual changes.
 Other array.prototype functions do not mutate, and instead can be used to generate a result.
 
 > !!! Don't use `apply` + ( `unshift` or `push` ) as this will add items into the array without wrapping them with meta-data!  
-eg. `store.apply('lvl1', pushArray => pushArray.push(something)) // BAD!!`  
+eg.  
+
+`store.apply('lvl1', pushArray => pushArray.push(something)) // BAD!!`  
+
 Instead use `store.push('lvl1', something)` or `store.unshift('lvl1', something)`
