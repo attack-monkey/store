@@ -1,71 +1,77 @@
+const stores = {};
+const locks = {};
+let storeIdCount: number = 1;
+let idCount: number = 1; // General numeric id used for any ids other than the store id
+
 export class Store {
-	store: any;
-	locked: boolean;
-	idCount: number = 1;
+	private storeId: number;
 
 	constructor(obj) {
-		this.store = cloner(obj);
+		this.storeId = storeIdCount;
+		stores[this.storeId] = cloner(obj);
+		locks[this.storeId] = false;
+		storeIdCount++;
 	}
 
-	get(key, options) { return get(key, options, this.store); }
+	get(key?, options?) { return get(key, options, stores[this.storeId]) }
 
 	set(key, val) {
-		if (this.locked) {
+		if (locks[this.storeId].locked) {
 			console.log('This Store is locked. Unlock to perform set operations');
 		} else {
-			this.store = iu(this.store, key, val);
+			stores[this.storeId] = iu(stores[this.storeId], key, val);
 		}
 	}
 
 	push(key, val) {
-		if (this.locked) {
+		if (locks[this.storeId].locked) {
 			console.log('This Store is locked. Unlock to perform push operations');
 		} else {
 			const valArray = isArray(val) ? val : [val];
 			const rows = valArray.reduce((ac, cv) => {
-				ac.push({ id: this.idCount, value: cv });
-				this.idCount++;
+				ac.push({ id: idCount, value: cv });
+				idCount++;
 				return ac;
-			}, get(key, undefined, this.store) || []);
-			this.store = iu(this.store, key, rows);
+			}, get(key, undefined, stores[this.storeId]) || []);
+			stores[this.storeId] = iu(stores[this.storeId], key, rows);
 		}
 	}
 
 	unshift(key, val) {
-		if (this.locked) {
+		if (locks[this.storeId].locked) {
 			console.log('This Store is locked. Unlock to perform unshift operations');
 		} else {
 			const valArray = isArray(val) ? val : [val];
 			const rows = valArray.reduce((ac, cv) => {
-				ac.unshift({ id: this.idCount, value: cv });
-				this.idCount++;
+				ac.unshift({ id: idCount, value: cv });
+				idCount++;
 				return ac;
-			}, get(key, undefined, this.store) || []);
-			this.store = iu(this.store, key, rows);
+			}, get(key, undefined, stores[this.storeId]) || []);
+			stores[this.storeId] = iu(stores[this.storeId], key, rows);
 		}
 	}
 
 	update(key, val) {
-		if (this.locked) {
+		if (locks[this.storeId].locked) {
 			console.log('This Store is locked. Unlock to perform update operations');
-		} else { update(key, val, this.store) }
+		} else { update(key, val, stores[this.storeId]) }
 	}
 
 	apply(key, func) {
-		if (this.locked) {
+		if (locks[this.storeId].locked) {
 			console.log('This Store is locked. Unlock to perform apply operations');
 		} else {
-			const pushArray = get(key, undefined, this.store);
+			const pushArray = get(key, undefined, stores[this.storeId]);
 			return func(pushArray);
 		}
 	}
 
 	lock() {
-		this.locked = true;
+		locks[this.storeId].locked = true;
 	}
 
 	unlock() {
-		this.locked = false;
+		locks[this.storeId].locked = false;
 	}
 }
 
@@ -90,7 +96,9 @@ function get(key, options, store) {
 // getting ids / keys and objects at a node --------------------------
 
 function objectAtNode(obj, key) {
-	return key.match(/\$/) ? pushArrayRef(obj, key) : obj[key];
+	try {
+		return key.match(/\$/) ? pushArrayRef(obj, key) : obj[key];
+	} catch (e) { console.log(e); }
 }
 
 function posAtNode(obj, key) {
