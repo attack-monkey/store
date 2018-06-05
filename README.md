@@ -18,7 +18,7 @@ _Store objects..._
 
 ```javascript
 
-const obj1 = createStore({thing: 'apple'});
+const obj1 = new Store({thing: 'apple'});
 const obj2 = obj1.get();
 obj2.thing = 'banana';
 console.log(obj1.get('thing')); // Still apple baby!
