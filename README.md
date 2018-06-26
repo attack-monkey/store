@@ -191,7 +191,7 @@ and multi value sorted...
 which sorts by value in descending order, then id in ascending order.
 
 and sorted by child nodes...  
-`store.get('lvl1', {sort: {'value/category', 'desc'}, limit: 3})`
+`store.get('lvl1', {sort: {by: 'value/category', dir: 'desc'}, limit: 3})`
 
 ### Deleting pushArray rows
 
